@@ -1,0 +1,389 @@
+:root {
+  --heart-color: #ff3b3b;
+
+  /* NEW THEME COLORS */
+  --bg-cream: #fff7ed;
+  --panel-cream: #fffaf2;
+  --mustard: #facc15;
+  --text-dark: #1f2937;
+  --btn-blue: #1d4ed8;
+}
+
+/* RESET */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+  background: var(--bg-cream);
+  color: var(--text-dark);
+}
+
+/* ===== Layout Wrapper ===== */
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+/* ===== GRID: Scene + Panel ===== */
+.stage-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== SCENE (LEFT) ===== */
+.scene {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--mustard);
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-cream);
+  user-select: none;
+  width: 100%;
+  max-width: 520px;
+  max-height: 700px;
+  justify-self: center;
+}
+
+/* Background images keep using existing theme logic */
+.scene.state-play  { background-image: url("./bg1.png"); }
+.scene.state-win   { background-image: url("./bg3.png"); }
+.scene.state-lose  { background-image: url("./bg4.png"); }
+
+/* ===== BLADE + ROPE ===== */
+#bladeSprite {
+  position: absolute;
+  left: 51%;
+  top: 13%;
+  width: min(60%, 380px);
+  max-width: 380px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.3));
+}
+
+#rope {
+  transform-origin: 150px 25px;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+#bladeHead {
+  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Shake effect */
+.scene.shake {
+  animation: shake .30s linear 1;
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+
+/* ===== HEARTS (WIN ANIMATION) ===== */
+.heart {
+  position: absolute;
+  top: -10vh;
+  font-size: 22px;
+  color: var(--heart-color);
+  opacity: 0;
+}
+
+.scene.state-win .heart {
+  animation: fall 1.9s linear infinite;
+}
+
+@keyframes fall {
+  0%   { transform: translateY(-10vh) scale(.8); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(110vh) scale(1.1); opacity: 0; }
+}
+
+/* ===== PANEL (RIGHT) ===== */
+.panel {
+  background: var(--panel-cream);
+  border: 3px solid var(--mustard);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: var(--text-dark);
+}
+
+.panel h3 {
+  margin: 0;
+  font-weight: 700;
+  color: #b91c1c; /* đỏ đậm accent */
+}
+
+/* ANSWERS */
+.answers {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.answers button {
+  background: #fff7eb;
+  color: var(--text-dark);
+  border: 2px solid #fcd34d;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .15s;
+}
+
+.answers button:hover {
+  background: #fffaf0;
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+}
+
+.answers button.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+.answers button.wrong {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.answers button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* ===== ENDGAME OVERLAY ===== */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 40px;
+  background: linear-gradient(to bottom, rgba(0,0,0,.0), rgba(0,0,0,.35));
+  z-index: 3;
+}
+
+.overlay.show { display: flex; }
+
+.card {
+  background: #fff8e6;
+  border: 3px solid var(--mustard);
+  border-radius: 16px;
+  padding: 20px 24px;
+  min-width: 260px;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.btn {
+  background: var(--btn-blue);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: 1px solid #93c5fd;
+  cursor: pointer;
+}
+
+/* ===== PAGE SPACING (kept from your layout) ===== */
+.game-container {
+  padding: 120px 0 80px;
+}
+
+.game-section {
+  background: var(--bg-cream);
+}
+
+/* ==== HOW TO PLAY – GRID 2x2 FIXED + CARD TO HƠN ==== */
+
+/* Grid cố định 2 cột trên màn hình lớn */
+.game-instructions {
+  margin-top: 40px;
+}
+
+.game-instructions h2 {
+  text-align: center;        /* căn giữa chữ */
+  font-size: 2.1rem;         /* tiêu đề to hơn */
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  margin: 0 0 28px;          /* cách dưới một chút */
+  color: var(--text-dark);
+  text-transform: uppercase; /* đúng vibe heading */
+}
+.instructions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 28px;           /* khoảng cách giữa card */
+  margin-top: 24px;
+}
+
+/* Card */
+.instruction-card {
+  background: var(--panel-cream);
+  border-radius: 20px;      /* bo cong đẹp hơn */
+  padding: 28px 32px;       /* 👉 to hơn */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+  border-left: 8px solid var(--mustard);
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  min-height: 150px;        /* 👉 card cao hơn tí cho đều */
+}
+
+/* Icon */
+.instruction-number {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* Title */
+.instruction-card h3 {
+  font-size: 1.25rem;
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+/* Description */
+.instruction-card p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-dark);
+  opacity: 0.9;
+}
+
+/* Mobile */
+@media (max-width: 780px) {
+  .instructions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .instruction-card {
+    padding: 22px 24px;
+    border-radius: 16px;
+  }
+}
+
+/* ==== INTRO LAYOUT: CARD + IMAGE (giữ như hình bạn gửi) ==== */
+.game-intro-section .intro-content {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: stretch;
+  margin-top: 28px;
+}
+
+/* Card chiếm full chiều cao cột trái */
+.game-intro-section .alert-mission {
+  flex: 1;
+  min-width: 0;
+
+  background: #fffaf2;
+  border: 2px solid #facc15;
+  border-radius: 24px;
+
+  /* giảm padding trên/dưới một chút để đỡ trống,
+     nhưng vẫn đủ thoáng */
+  padding: 28px 36px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Icon 🚨 */
+.alert-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+/* TEXT TO HƠN, FILL KHUNG HƠN */
+.alert-text {
+  font-size: 1.35rem;        /* tăng size chữ nội dung */
+  line-height: 1.7;
+  color: #1f2937;
+  font-weight: 460;
+}
+
+.alert-text strong {
+  font-weight: 800;
+}
+
+/* TITLE TO HƠN & GẦN NỘI DUNG HƠN */
+.alert-title {
+  font-size: 1.7rem;         /* title bự hơn hẳn */
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #b91c1c;
+  margin: 0 0 10px;
+}
+
+/* Ảnh bên phải giữ layout như poster */
+.game-intro-section .intro-image {
+  width: 100%;
+  height: 100%;
+  max-height: 430px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+  display: block;
+}
+
+/* Responsive: mobile xếp dọc lại */
+@media (max-width: 900px) {
+  .game-intro-section .intro-content {
+    grid-template-columns: 1fr;
+  }
+
+  .game-intro-section .alert-mission {
+    padding: 22px 20px;
+  }
+
+  .alert-text {
+    font-size: 1.1rem;
+    line-height: 1.65;
+  }
+
+  .alert-title {
+    font-size: 1.35rem;
+  }
+}
+
+.game-intro-section .intro-image {
+  width: auto;               
+  height: auto;
+  max-width: 100%;          
+  border-radius: 18px;      
+  object-fit: contain;      
+  display: block;
+
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15); 
+  margin-left: auto;
+  margin-right: auto;    
+}

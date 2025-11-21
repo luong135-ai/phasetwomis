@@ -1,0 +1,644 @@
+/* Order Overlay Styles */
+
+/* Sidebar Order Now Button */
+.sidebar-order-now {
+    width: 100%;
+    background: #e11d48;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 24px;
+}
+
+.sidebar-order-now:hover {
+    background: #be1a3d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+}
+
+/* Add to Cart Button with Checkmark */
+.order-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.order-btn .btn-label {
+    display: inline-block;
+}
+
+.order-btn .btn-checkmark {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    color: #fff;
+    font-size: 12px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.order-btn.is-added .btn-checkmark {
+    display: inline-flex;
+}
+
+.order-btn.is-added .btn-checkmark::before {
+    content: '✓';
+    font-weight: bold;
+}
+
+/* Order Overlay Container */
+.order-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.order-overlay.is-open {
+    display: flex;
+    opacity: 1;
+}
+
+.order-overlay-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.order-overlay-dialog {
+    position: relative;
+    background: #FAF8F4;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+}
+
+.order-overlay.is-open .order-overlay-dialog {
+    transform: scale(1);
+}
+
+.order-overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 32px;
+    background: #FAF8F4;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.order-overlay-header h2 {
+    font-family: 'Bellefair', serif;
+    font-size: 28px;
+    color: #1A1A1A;
+    margin: 0;
+    text-align: center;
+}
+
+.order-overlay-close {
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #666;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    /* ensure the close button sits above embedded iframes */
+    z-index: 2002;
+}
+
+.order-overlay-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #1A1A1A;
+}
+
+.order-overlay-content {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 0;
+    flex: 1;
+    overflow: hidden;
+}
+
+.order-options-column {
+    padding: 32px;
+    overflow-y: auto;
+    background: #FAF8F4;
+}
+
+.order-map-column {
+    background: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.order-map-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.order-map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Overlay Steps - Only show active step */
+.overlay-step {
+    display: none;
+}
+
+.overlay-step.active {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* State A: Selection Screen */
+.order-options-heading {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1A1A1A;
+    margin-bottom: 24px;
+}
+
+.order-option-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-option-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.order-option-content {
+    flex: 1;
+}
+
+.order-option-title {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+}
+
+.order-option-desc {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.order-option-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e11d48;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.order-option-arrow:hover {
+    background: #be1a3d;
+    transform: scale(1.1);
+}
+
+.carryout-options {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.carryout-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+}
+
+.carryout-option svg {
+    color: #666;
+}
+
+.carryout-option span {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 12px;
+    color: #666;
+}
+
+/* State B & C: Delivery/Carryout Forms */
+.delivery-tabs {
+    display: flex;
+    background: white;
+    border-radius: 9999px;
+    padding: 4px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-tab {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #666;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delivery-tab.active {
+    background: #2563eb;
+    color: white;
+}
+
+.use-location-btn {
+    width: 100%;
+    padding: 14px 20px;
+    background: white;
+    border: 2px solid #2563eb;
+    border-radius: 12px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2563eb;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+}
+
+.use-location-btn:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.location-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.use-location-btn:hover .location-icon {
+    background: white;
+    color: #2563eb;
+}
+
+.delivery-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-field {
+    width: 100%;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-input::placeholder {
+    color: #999;
+}
+
+.continue-btn,
+.find-store-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: #e11d48;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+}
+
+.continue-btn:hover,
+.find-store-btn:hover {
+    background: #be1a3d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+}
+
+/* Carryout Search Sections */
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-section-title {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1A1A1A;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.search-separator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.separator-line {
+    flex: 1;
+    height: 1px;
+    background: #E5E5E5;
+}
+
+.separator-text {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 14px;
+    color: #999;
+}
+
+/* Success Modal */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.success-modal.is-open {
+    display: flex;
+    opacity: 1;
+}
+
+.success-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.success-modal-dialog {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    z-index: 2001;
+}
+
+.success-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #666;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.success-modal-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #1A1A1A;
+}
+
+.success-modal.is-open .success-modal-dialog {
+    transform: scale(1);
+}
+
+.success-modal-title {
+    font-family: 'Bellefair', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 16px;
+}
+
+.success-modal-message {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.success-modal-ok {
+    background: #e11d48;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 9999px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.success-modal-ok:hover {
+    background: #be1a3d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1023px) {
+    .order-overlay-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    .order-options-column {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    .order-map-column {
+        min-height: 300px;
+    }
+
+    .order-overlay-header h2 {
+        font-size: 24px;
+    }
+    
+    .success-modal-dialog {
+        padding: 32px 24px;
+        max-width: 90%;
+    }
+    
+    .success-modal-title {
+        font-size: 24px;
+    }
+    
+    .success-modal-message {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .order-overlay-dialog {
+        width: 95%;
+        max-height: 95vh;
+        border-radius: 12px;
+    }
+
+    .order-overlay-header {
+        padding: 16px 20px;
+    }
+
+    .order-overlay-header h2 {
+        font-size: 20px;
+    }
+
+    .order-overlay-close {
+        right: 20px;
+        font-size: 28px;
+    }
+
+    .order-options-column {
+        padding: 20px;
+    }
+
+    .order-option-card {
+        padding: 16px;
+    }
+
+    .carryout-options {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .success-modal-dialog {
+        padding: 24px 20px;
+    }
+    
+    .success-modal-title {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+    
+    .success-modal-message {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
+    .success-modal-ok {
+        padding: 14px 24px;
+        font-size: 14px;
+    }
+}
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Guillotine Quiz — Bulldogs Edition</title>
+        <link rel="stylesheet" href="game.css">
+    </head>
+    <body>
+        <div class="wrap">
+        <header>
+            <h2 style="margin:0">Guillotine Quiz 🐶🪓</h2>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div class="badge">Tiến độ: <span id="progress">1/10</span></div>
+            <div class="badge">Sai: <span id="wrong">0/3</span></div>
+            </div>
+        </header>
+
+        <div class="stage-grid">
+            <!-- ===== SCENE ===== -->
+            <div class="scene state-play" id="scene">
+            <!-- Blade + rope SVG overlay -->
+            <svg id="bladeSprite" viewBox="0 0 300 370" aria-hidden="true">
+                <!-- rope: top fixed at (150,25), height 50 -->
+                <rect id="rope" x="148" y="25" width="4" height="50" rx="2" fill="#d4d4d4"/>
+
+                <!-- blade head: wood + triangle, sẽ translateY -->
+                <g id="bladeHead">
+                <!-- top wood -->
+                <rect x="85" y="70" width="130" height="28" rx="6"
+                        fill="#d9b07a" stroke="#8a642f" />
+                <!-- blade triangle -->
+                <polygon points="85,98 215,98 155,165"
+                        fill="#f3f3f3" stroke="#bfbfbf"/>
+                </g>
+            </svg>
+
+            <!-- hearts win -->
+            <div id="hearts"></div>
+
+            <!-- overlay win/lose -->
+            <div class="overlay" id="overlay">
+                <div class="card">
+                <h2 id="ov-title">🎉 Tuyệt vời!</h2>
+                <p id="ov-desc">Bạn đã chiến thắng!</p>
+                <button class="btn" id="retryBtn">Chơi lại</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- ===== PANEL CÂU HỎI ===== -->
+            <div class="panel">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 style="margin:0">Câu hỏi</h3>
+                <small style="opacity:.8">Bấm phím 1–4 để chọn đáp án</small>
+            </div>
+            <div id="qText" style="margin:10px 0 12px"></div>
+            <div class="answers" id="answers"></div>
+            </div>
+        </div>
+        </div>
+
+        <script src="game.js"></script>
+    </body>
+</html>

@@ -1,0 +1,331 @@
+/* Menu Page Specific Styles */
+
+.menu-page {
+    background: #FAF8F4;
+}
+
+.menu-page-container {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+/* Left Sidebar Navigation */
+.menu-sidebar {
+    position: fixed;
+    left: 0;
+    top: 120px;
+    width: 24%;
+    max-width: 280px;
+    height: calc(100vh - 80px);
+    background: #F5EEDC;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 28px 24px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.sidebar-header {
+    margin-bottom: 24px;
+}
+
+.sidebar-header h2 {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #FFFFFF;
+    background: #004B3C;
+    padding: 10px 0;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+.sidebar-divider {
+    height: 2px;
+    background: #DAA520;
+    width: 100%;
+}
+
+.category-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.category-link {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 17px;
+    color: #004B3C;
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: left;
+    border-bottom: 2px solid #004B3C;
+    margin-bottom: 0;
+    display: block;
+}
+
+.category-link:last-child {
+    border-bottom: 2px solid #004B3C;
+}
+
+.category-link:hover {
+    color: #DAA520;
+}
+
+.category-link.active {
+    font-weight: 700;
+    color: #DAA520;
+    text-decoration: underline;
+    text-decoration-color: #DAA520;
+    text-underline-offset: 4px;
+}
+
+/* Right Content Area */
+.menu-content {
+    margin-left: 24%;
+    width: 76%;
+    padding: 40px;
+    background: #FAF8F4;
+}
+
+.food-section {
+    margin-bottom: 80px;
+    scroll-margin-top: 100px;
+}
+
+.food-section:last-child {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: 30px;
+    color: #8B0000;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+}
+
+/* Food Grid */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.food-card {
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.food-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transform: scale(1.02);
+}
+
+.food-image {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease;
+}
+
+.food-card:hover .food-image {
+    transform: scale(1.05);
+}
+
+.food-name {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #004B3C;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.food-price {
+    font-family: 'Bellefair', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 16px;
+}
+
+.food-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.order-btn {
+    background: #FFD700;
+    color: #004B3C;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.order-btn:hover {
+    background: #FFC700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+}
+
+/* Checkmark styles moved to order-overlay.css */
+
+/* Mobile Category Dropdown */
+.mobile-category-dropdown {
+    display: none;
+}
+
+.category-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    color: #004B3C;
+    background: #F5EEDC;
+    border: 2px solid #004B3C;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ===== TỪ ĐÂY TRỞ XUỐNG: CHỈ RIÊNG MENU PAGE ===== */
+
+@media (max-width: 1023px) {
+    .menu-page .menu-page-container {
+        flex-direction: column;
+        padding-top: calc(60px + env(safe-area-inset-top));
+    }
+
+    .menu-page .menu-sidebar {
+        display: none;
+    }
+
+    .menu-page .mobile-category-dropdown {
+        display: block;
+        position: sticky;
+        top: calc(60px + env(safe-area-inset-top));
+        z-index: 100;
+        background: #F5EEDC;
+        padding: 16px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-page .menu-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .menu-page .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .menu-page .section-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    .menu-page .floating-nav {
+        height: 56px;
+    }
+    
+    .menu-page .menu-page-container {
+        padding-top: calc(56px + env(safe-area-inset-top));
+    }
+    
+    .menu-page .mobile-category-dropdown {
+        top: calc(56px + env(safe-area-inset-top));
+    }
+
+    .menu-page .menu-content {
+        padding: 16px;
+    }
+
+    .menu-page .food-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .menu-page .section-title {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+
+    .menu-page .food-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .menu-page .order-btn {
+        width: 100%;
+    }
+
+    .menu-page .food-image {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-page .floating-nav {
+        height: 52px;
+    }
+    
+    .menu-page .menu-page-container {
+        padding-top: calc(52px + env(safe-area-inset-top));
+    }
+    
+    .menu-page .mobile-category-dropdown {
+        top: calc(52px + env(safe-area-inset-top));
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for Sidebar */
+.menu-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.menu-sidebar::-webkit-scrollbar-track {
+    background: #F5EEDC;
+    border-radius: 3px;
+}
+
+.menu-sidebar::-webkit-scrollbar-thumb {
+    background: #DAA520;
+    border-radius: 3px;
+}
+
+.menu-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #B8860B;
+}

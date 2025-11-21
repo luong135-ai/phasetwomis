@@ -1,0 +1,1348 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Special Gothic', sans-serif;
+    line-height: 1.6;
+    color: #1A1A1A;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Floating Navigation */
+.floating-nav {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 1200px;
+    min-width: 320px;
+    height: 64px;
+    background: url('anh2.jpg') center/cover;
+    background-color: rgba(255, 255, 255, 0.85);
+    background-blend-mode: overlay;
+    border-radius: 9999px;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* --- Sticky Nav (full width + show brand) --- */
+@media (min-width: 1024px) {
+    .floating-nav.sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.97);
+        z-index: 150;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .floating-nav.sticky .nav-container {
+        padding: 0 40px;
+        justify-content: space-between;
+    }
+
+    /* Show brand in sticky mode */
+    .floating-nav.sticky .brand-center {
+        opacity: 1;
+    }
+}
+
+/* Default state: brand hidden */
+.brand-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Abril Fatface', serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #1A1A1A;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+
+/* Brand — hidden normally */
+.brand-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Abril Fatface', serif; /* giống style của bạn */
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #1A1A1A;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.hamburger-menu span {
+    width: 24px;
+    height: 3px;
+    background: #1A1A1A;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Tablet and below - make nav fixed and full width */
+@media (max-width: 1023px) {
+    .floating-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        height: 60px;
+        border-radius: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    .nav-container {
+        padding: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+    }
+    
+    .hamburger-menu {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 250px;
+        height: calc(100vh - 60px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+    }
+    
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    
+    .nav-link {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        text-align: left;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-controls {
+        gap: 12px;
+        /* margin-left: auto; */
+    }
+    
+    .cta-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 767px) {
+    .floating-nav {
+        height: 56px;
+    }
+    
+    .nav-container {
+        padding: 0 16px;
+    }
+    
+    .nav-links {
+        top: 56px;
+        height: calc(100vh - 56px);
+        width: 220px;
+    }
+    
+    .nav-controls {
+        gap: 8px;
+    }
+    
+    .cta-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .floating-nav {
+        height: 52px;
+    }
+    
+    .nav-container {
+        padding: 0 12px;
+    }
+    
+    .cta-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+}
+
+.floating-nav:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 32px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-link {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #1A1A1A;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #DAA520;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #DAA520;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cart-btn, .search-btn {
+    background: none;
+    border: none;
+    color: #1A1A1A;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.cart-btn:hover, .search-btn:hover {
+    background: rgba(218, 165, 32, 0.1);
+    color: #DAA520;
+}
+
+.cta-btn {
+    background: #F59E0B;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: #D97706;
+    transform: translateY(-2px);
+}
+
+/* About Section */
+.about-section {
+    background: #FAF8F4;
+    padding: 60px 0 80px;
+}
+
+.section-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: 48px;
+    color: #1A1A1A;
+    text-align: center;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   ABOUT PAGE: "What is Phoholic?" Section
+   ========================================== */
+
+.about-page-section {
+    background-color: #FFFFFF;
+    padding: 80px 0;
+    min-height: auto;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: min(1200px, 90vw);
+    margin: 0 auto;
+}
+
+.about-text-column {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-heading {
+    font-family: 'Bellefair', serif;
+    font-size: 42px;
+    color: #1A1A1A;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-bottom: 16px;
+}
+
+.about-paragraph {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 18px;
+    color: #1A1A1A;
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0;
+}
+
+.about-image-column {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s ease-out;
+}
+
+.about-image:hover {
+    transform: scale(1.02);
+}
+
+/* About Details Section (Our Story) */
+.about-details-section {
+    background: #FAF8F4;
+    padding: 60px 0 80px;
+}
+
+.section-subtitle {
+    font-family: 'Bellefair', serif;
+    font-size: 36px;
+    color: #1A1A1A;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #1A1A1A;
+    margin-bottom: 20px;
+}
+
+/* ==========================================
+   RESPONSIVE: Tablet (768–1023px)
+   ========================================== */
+
+@media (max-width: 1023px) {
+    .about-layout {
+        gap: 32px;
+    }
+
+    .about-heading {
+        font-size: 36px;
+    }
+
+    .about-paragraph {
+        font-size: 17px;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE: Mobile (≤767px)
+   ========================================== */
+
+@media (max-width: 767px) {
+    .about-page-section {
+        padding: 60px 20px;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        align-items: flex-start;
+    }
+
+    .about-text-column {
+        padding: 0;
+        order: 1;
+    }
+
+    .about-heading {
+        font-size: 32px;
+    }
+
+    .about-paragraph {
+        font-size: 16px;
+        max-width: 100%;
+    }
+
+    .about-image-column {
+        order: 2;
+        justify-content: center;
+    }
+
+    .about-details-section {
+        padding: 60px 20px 80px;
+    }
+
+    .section-subtitle {
+        font-size: 28px;
+    }
+
+    .about-content p {
+        font-size: 16px;
+    }
+}
+
+/* Menu Section */
+.menu-section {
+    background: #FAF8F4;
+    padding: 60px 0 80px;
+}
+
+.section-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: 48px;
+    color: #1A1A1A;
+    text-align: center;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+.category-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background: none;
+    border: none;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    color: #DAA520;
+}
+
+.view-all-btn {
+    background: #8B0000;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background: #DAA520;
+    color: #1A1A1A;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Menu Category Cards - Home Page Only */
+.menu-category-grid {
+    max-width: 1015px;
+    gap: 32px;
+}
+
+.menu-category-card {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /* Cards are 5px larger than original food cards (which were ~312px x ~200px) */
+    /* Making them rectangular: 317px x 205px */
+    height: 205px;
+}
+
+.menu-category-card:first-child:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.menu-category-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.category-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.food-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.food-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.food-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.food-name {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #004B3C;
+    text-transform: uppercase;
+    margin: 12px 16px 8px;
+}
+
+.food-price {
+    font-family: 'Bellefair', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #8B0000;
+    margin: 0 16px 16px;
+}
+
+.food-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 0 16px 24px;
+}
+
+.order-btn {
+    background: #FFD700;
+    color: #004B3C;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.order-btn:hover {
+    background: #FFC700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+}
+
+/* Checkmark styles moved to order-overlay.css */
+
+.detail-btn {
+    flex: 1;
+    background: transparent;
+    color: #999;
+    border: 1px solid #CCC;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.food-card:hover .detail-btn {
+    background: #8B0000;
+    color: white;
+    border-color: #8B0000;
+}
+
+.detail-btn:hover {
+    background: #8B0000;
+    color: white;
+    border-color: #8B0000;
+}
+
+/* See More Link - All instances use Oswald font and are centered */
+.see-more-link {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #880808;
+    text-decoration: underline;
+    margin: 24px auto 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.see-more-link:hover {
+    transform: scale(1.1);
+    color: #a00a0a;
+    text-decoration-thickness: 2px;
+}
+
+/* Help Link */
+.help-link {
+    display: inline-block;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #880808;
+    text-decoration: underline;
+    margin: 16px 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.help-link:hover {
+    transform: scale(1.1);
+    color: #a00a0a;
+    text-decoration-thickness: 2px;
+}
+
+/* Game Section Help Link - Centered with Oswald Font */
+.game-section .game-help-link {
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    display: block;
+    margin: 16px auto;
+}
+
+/* Video Section */
+.video-section {
+    background: #FAF8F4;
+    padding: 72px 0;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    transition: all 0.3s ease;
+}
+
+.video-container:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    transform: scale(1.01);
+}
+
+.video-player, .youtube-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-caption {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.video-caption:hover {
+    text-decoration: underline;
+}
+
+/* Booking Section */
+.booking-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+}
+
+.booking-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.booking-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.booking-card {
+    position: relative;
+    z-index: 10;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+    padding: 40px;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 20px;
+}
+
+.booking-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: 36px;
+    color: #1A1A1A;
+    text-align: center;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.booking-subtitle {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.booking-form {
+    display: grid;
+    gap: 24px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 14px 16px;
+    border: 1px solid #E5E5E5;
+    border-radius: 28px;
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    background: #F8F8F8;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #DAA520;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+}
+
+.time-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-inputs {
+    display: flex;
+    gap: 12px;
+}
+
+.time-inputs select {
+    flex: 1;
+}
+
+.submit-btn {
+    background: #DAA520;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 9999px;
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    justify-self: center;
+    margin-top: 16px;
+}
+
+.submit-btn:hover {
+    background: #B8860B;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.3);
+}
+
+/* Game Section */
+.game-section {
+    background: #FAF8F4;
+    padding: 60px 0 80px;
+}
+
+.game-content {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.game-content p {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 18px;
+    color: #1A1A1A;
+    margin-bottom: 20px;
+}
+
+.game-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-top: 24px;
+    border-radius: 8px;
+}
+
+/* Page Styles for About, Contact, Game Pages */
+.about-page-section,
+.contact-page-section,
+.game-page-section {
+    padding: 120px 0 80px;
+    background: #FAF8F4;
+    min-height: 60vh;
+}
+
+/* Adjust padding for pages with fixed nav on mobile */
+@media (max-width: 1023px) {
+    .about-page-section,
+    .contact-page-section,
+    .game-page-section {
+        padding-top: calc(100px + 60px + env(safe-area-inset-top));
+    }
+}
+
+@media (max-width: 767px) {
+    .about-page-section,
+    .contact-page-section,
+    .game-page-section {
+        padding-top: calc(80px + 56px + env(safe-area-inset-top));
+    }
+}
+
+@media (max-width: 480px) {
+    .about-page-section,
+    .contact-page-section,
+    .game-page-section {
+        padding-top: calc(60px + 52px + env(safe-area-inset-top));
+    }
+}
+
+.page-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: 48px;
+    color: #1A1A1A;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info-card,
+.contact-form-card {
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-info-card h3,
+.contact-form-card h3 {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1A1A1A;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.contact-info-card p {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #1A1A1A;
+    margin-bottom: 12px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px 16px;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    background: #F8F8F8;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #DAA520;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+}
+
+/* Footer Section */
+.footer-section {
+    background: #1F1F1F;
+    color: white;
+    padding: 88px 0 72px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.footer-logo {
+    max-width: 240px;
+    margin-bottom: 28px;
+}
+
+.footer-title {
+    font-family: 'Special Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: #DAA520;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.contact-info p {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 8px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.4);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 40px;
+    padding-top: 18px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-family: 'Special Gothic', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.64);
+}
+
+/* Responsive Design - Tablet and below */
+@media (max-width: 1023px) {
+    /* Hero section padding for fixed nav */
+    .hero-section {
+        padding-top: calc(60px + env(safe-area-inset-top));
+    }
+    
+    .section-title {
+        font-size: 34px;
+    }
+    
+    .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Hero section padding for fixed nav on mobile */
+    .hero-section {
+        padding-top: calc(56px + env(safe-area-inset-top));
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 36px;
+    }
+    
+    .category-nav {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    
+    .category-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .food-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .food-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .order-btn {
+        width: 100%;
+    }
+    
+    .booking-card {
+        margin: 0 16px;
+        padding: 24px;
+    }
+    
+    .booking-title {
+        font-size: 28px;
+    }
+    
+    .time-inputs {
+        flex-direction: column;
+    }
+    
+    .footer-logo {
+        max-width: 200px;
+    }
+    
+    .footer-title {
+        font-size: 20px;
+    }
+    
+    .contact-info p {
+        font-size: 15px;
+    }
+    
+    .social-icons {
+        gap: 16px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Hero section padding for small mobile */
+    .hero-section {
+        padding-top: calc(52px + env(safe-area-inset-top));
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+    outline: 2px solid #DAA520;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .floating-nav {
+        background: white;
+        border: 2px solid #000;
+    }
+    
+    .nav-link {
+        color: #000;
+    }
+    
+    .food-card {
+        border: 1px solid #000;
+    }
+}
